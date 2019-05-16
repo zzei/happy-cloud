@@ -1,0 +1,53 @@
+server:
+  port: 8002
+spring:
+  application:
+    name: provide8002
+# 配置数据
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://10.211.55.7:3306/happy
+    username: root
+    password: 123456
+    type: com.alibaba.druid.pool.DruidDataSource
+# 配置redis sentinel集群
+  redis:
+    database: 0
+    host: 10.211.55.7
+    port: 6379
+    password: 123456
+    sentinel:
+      master: mymaster
+      nodes: 10.211.55.7:26379,10.211.55.7:26380,10.211.55.7:26381
+    jedis:
+      pool:
+        max-active: 300
+        max-wait: -1
+        max-idle: 100
+        min-idle: 20
+# 配置rabbitmq
+  rabbitmq:
+    host: 10.211.55.7
+    username: guest
+    password: guest
+    listener:
+      simple:
+        concurrency: 10
+        max-concurrency: 20
+        prefetch: 5
+#配置mybatis驼峰转换
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+#配置eureka服务注册
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:7001/eureka/
+  instance:
+    instance-id: provide8002
+    prefer-ip-address: true
+info:
+  author: zzei
+  server:
+    name: provide8002

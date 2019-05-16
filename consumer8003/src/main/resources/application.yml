@@ -1,0 +1,19 @@
+server:
+  port: 8003
+spring:
+  application:
+    name: consumer8003
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:7001/eureka/
+  instance:
+    instance-id: consumer8003
+    prefer-ip-address: true
+info:
+  author: zzei
+  server:
+    name: consumer8003
+feign:
+  hystrix:
+    enabled: true
